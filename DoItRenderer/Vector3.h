@@ -6,9 +6,12 @@ namespace DIR
 	class Vector3
 	{
 	public:
-		inline Vector3(): x(0.0), y(0.0), z(0.0)
-		{
-		}
+		inline Vector3()
+		{}
+
+		inline Vector3(float fx, float fy, float fz)
+			: x(fx), y(fy), z(fz)
+		{}
 
 	public:
 		float x, y, z;
