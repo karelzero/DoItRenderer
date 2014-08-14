@@ -111,5 +111,11 @@ namespace DIR
 	{
 		return l.GetPtr() != r.GetPtr();
 	}
+
+	template<Class T, Class C>
+	bool operator<(const SharedPtr<T>& l, const SharedPtr<C>& r)
+	{
+		return l.GetPtr() < r.GetPtr();
+	}
 }
 #endif
