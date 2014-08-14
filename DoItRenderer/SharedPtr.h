@@ -7,6 +7,10 @@ namespace DIR
 	class SharedPtr
 	{
 	public:
+		SharedPtr() : m_pRef(NULL), m_pUsed(NULL)
+		{
+		}
+
 		SharedPtr(T* p) : m_pRef(NULL), m_pUsed(NULL)
 		{
 			if (p)
@@ -20,6 +24,15 @@ namespace DIR
 		SharedPtr(const SharedPtr& sp) : m_pRef(NULL), m_pUsed(NULL)
 		{
 			Copy(sp);
+		}
+
+		template<Class C>
+		SharedPtr(const SharedPtr<C>& sp)
+		{
+			m_pRef = sp->GetPtr();
+			m_pUsed = sp->GetCount();
+			if (m_pUsed)
+				++(*m_pUsed);
 		}
 
 		~SharedPtr()
@@ -46,14 +59,12 @@ namespace DIR
 			}
 		}
 
-		inline bool operator==(const SharedPtr& sp) { return m_pRef == sp.m_pRef; }
-		inline bool operator!=(const SharedPtr& sp) { return m_pRef != sp.m_pRef; }
 		inline T& operator*() { assert(m_pRef); return *m_pRef; }
 		inline T* operator->() { assert(m_pRef); return m_pRef; }
 
 		inline bool IsNull() { return m_pRef == NULL; }
 		inline T* GetPtr() const { return m_pRef; }
-		inline unsigned int GetUsed() const { assert(m_pUsed); return *m_pUsed; }
+		inline unsigned int GetCount() const { assert(m_pUsed); return *m_pUsed; }
 		
 	protected:
 		void Copy(const SharedPtr& sp)
@@ -88,5 +99,17 @@ namespace DIR
 		T* m_pRef;
 		unsigned int* m_pUsed;
 	};
+
+	template<Class T, Class C>
+	bool operator==(const SharedPtr<T>& l, const SharedPtr<C>& r)
+	{
+		return l.GetPtr() == r.GetPtr();
+	}
+
+	template<Class T, Class C>
+	bool operator!=(const SharedPtr<T>& l, const SharedPtr<C>& r)
+	{
+		return l.GetPtr() != r.GetPtr();
+	}
 }
 #endif
