@@ -1,5 +1,5 @@
-#ifndef __SHARED_POINTER__
-#define __SHARED_POINTER__
+#ifndef __SHARED_POINTER_H__
+#define __SHARED_POINTER_H__
 
 namespace DIR
 {

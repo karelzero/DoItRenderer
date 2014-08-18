@@ -83,6 +83,9 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vector3.h" />
+    <ClInclude Include="VertexBuffer.h" />
+    <ClInclude Include="VertexDeclaration.h" />
+    <ClInclude Include="VertexElement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DoItRenderer.cpp" />
@@ -91,6 +94,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
+    <ClCompile Include="VertexDeclaration.cpp" />
+    <ClCompile Include="VertexElement.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
